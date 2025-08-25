@@ -29,11 +29,6 @@ python -m cnc_warmup
 ### Windows shortcuts
 
 - Double-click `run_gui.bat` to open the GUI.
-- Use `run_cli.bat` from a terminal for CLI usage, for example:
-
-```bat
-run_cli.bat --controller tnc640 --program-name WARMUP --x-travel 762 --y-travel 508 --z-travel 500 --start-rpm 500 --finish-rpm 6000 --start-feed 1000 --finish-feed 2000 --rpm-steps 5 --seconds-per-step 60 --coolant --output warmup.h
-```
 
 1. In the GUI:
    - Set Program Name, Controller, optional Machine preset or "Custom" travels
