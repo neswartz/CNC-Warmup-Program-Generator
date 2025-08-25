@@ -52,23 +52,10 @@ Examples:
 
 ```bash
 # Heidenhain TNC 640, write to file
-python -m cnc_warmup \
-  --controller tnc640 \
-  --program-name WARMUP \
-  --x-travel 762 --y-travel 508 --z-travel 500 \
-  --start-rpm 500 --finish-rpm 6000 \
-  --start-feed 1000 --finish-feed 2000 \
-  --rpm-steps 5 --seconds-per-step 60 \
-  --coolant \
-  --output warmup.h
+python -m cnc_warmup --controller tnc640 --program-name WARMUP --x-travel 762 --y-travel 508 --z-travel 500 --start-rpm 500 --finish-rpm 6000 --start-feed 1000 --finish-feed 2000 --rpm-steps 5 --seconds-per-step 60 --coolant --output warmup.h
 
 # Fanuc 31i, print to stdout
-python -m cnc_warmup \
-  --controller fanuc31i \
-  --x-travel 1016 --y-travel 660 --z-travel 500 \
-  --start-rpm 500 --finish-rpm 6000 \
-  --start-feed 1000 --finish-feed 2000 \
-  --rpm-steps 5 --seconds-per-step 60
+python -m cnc_warmup --controller fanuc31i --x-travel 1016 --y-travel 660 --z-travel 500 --start-rpm 500 --finish-rpm 6000 --start-feed 1000 --finish-feed 2000 --rpm-steps 5 --seconds-per-step 60
 ```
 
 Notes:
