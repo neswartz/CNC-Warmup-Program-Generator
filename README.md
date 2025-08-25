@@ -96,6 +96,6 @@ Reference manuals are included under `docs/` for convenience:
 - Heidenhain TNC 640 Klartext Programming User's Manual
 - Fanuc 30i Series Programming Manual
 
-Also usedthe following websites as a reference:
+Also used the following websites as a reference:
 - [https://www.helmancnc.com/](https://www.helmancnc.com/)
 - [HIT – HEIDENHAIN Interactive Training](https://www.heidenhain.us/addl-materials/HIT_3-Axis-Programming_DEMO/index/hitheidenhai.html)
