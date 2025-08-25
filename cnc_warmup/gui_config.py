@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from dataclasses import dataclass
-from typing import Dict
 from .config_loader import load_config, get_machines, get_defaults
 
 """Tkinter GUI to collect warmup configuration from the user."""
@@ -79,7 +78,7 @@ class WarmupConfigGUI:
         ttk.Entry(main, textvariable=self.finish_feed_var).grid(row=6, column=1, sticky="ew")
 
         # RPM Steps and Seconds per Step
-        default_steps = int(defaults.get("rpm_steps", defaults.get("num_steps", 5)))
+        default_steps = int(defaults.get("rpm_steps", 5))
         ttk.Label(main, text="Steps (RPM):").grid(row=7, column=0, sticky="w")
         self.rpm_steps_var = tk.StringVar(value=str(default_steps))
         ttk.Entry(main, textvariable=self.rpm_steps_var).grid(row=7, column=1, sticky="ew")
@@ -89,7 +88,7 @@ class WarmupConfigGUI:
         ttk.Entry(main, textvariable=self.seconds_per_step_var).grid(row=8, column=1, sticky="ew")
 
         # Coolant
-        self.coolant_var = tk.BooleanVar(value=bool(defaults.get("coolant", True)))
+        self.coolant_var = tk.BooleanVar(value=bool(defaults.get("coolant", False)))
         ttk.Label(main, text="Flood Coolant (M8):").grid(row=9, column=0, sticky="w")
         ttk.Checkbutton(main, variable=self.coolant_var).grid(row=9, column=1, sticky="w")
 

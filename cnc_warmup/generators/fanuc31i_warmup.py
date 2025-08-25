@@ -51,13 +51,9 @@ def generate_program(
     y_min_safe = -half_y
     y_max_safe = +half_y
     z_home = 0.0
-    # Choose a reasonable top-safe slightly below home: 10% of travel capped at 50mm
-    z_top_safe = -min(max_z * 0.10, 50.0)
+    # Choose a reasonable top-safe slightly below home: 5% of travel capped at 10mm
+    z_top_safe = -min(max_z * 0.05, 10.0)
     z_bottom_safe = -max_z
-
-    # Feed steps for axis exercises (template uses a separate count).
-    # We default to 4 passes; user can edit in the output program.
-    clamped_feed_steps = 4
 
     lines: List[str] = []
     lines.append("%")
@@ -95,7 +91,7 @@ def generate_program(
     lines.append("")
 
     # Housekeeping / safe start
-    lines.append("(===== HOUSEKEEPING / SAFE START =====)")
+    lines.append("(===== SAFE START =====)")
     lines.append("G21 G17 G90 G94 G40 G49 G80")
     lines.append("M05")
     lines.append("M09")

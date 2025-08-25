@@ -1,9 +1,7 @@
 import argparse
 import sys
-from tkinter import filedialog, messagebox
 
 from .generators import generate_tnc_program, generate_fanuc_program
-from .gui_config import launch_gui_and_get_config
 from .config_loader import load_config, get_defaults
 
 
@@ -28,15 +26,13 @@ def main() -> None:
         parser.add_argument("--finish-rpm", type=float, default=float(defaults.get("finish_rpm", 6000)))
         parser.add_argument("--start-feed", type=float, default=float(defaults.get("start_feed", 1000)))
         parser.add_argument("--finish-feed", type=float, default=float(defaults.get("finish_feed", 2000)))
-        parser.add_argument("--rpm-steps", type=int, default=int(defaults.get("rpm_steps", defaults.get("num_steps", 5))))
+        parser.add_argument("--rpm-steps", type=int, default=int(defaults.get("rpm_steps", 5)))
         parser.add_argument("--seconds-per-step", type=int, default=int(defaults.get("seconds_per_step", 1)))
         parser.add_argument("--coolant", dest="coolant", action="store_true", default=bool(defaults.get("coolant", False)))
         parser.add_argument("--output", default="", help="Output file path (defaults to stdout)")
 
         args = parser.parse_args()
         gen_func = generate_tnc_program if args.controller == "tnc640" else generate_fanuc_program
-        # Determine machine label from CLI (no presets here; allow explicit label)
-        machine_label = None
         program_text = gen_func(
             program_name=args.program_name,
             x_travel=args.x_travel,
@@ -49,7 +45,7 @@ def main() -> None:
             finish_rpm=args.finish_rpm,
             seconds_per_step=max(0, int(args.seconds_per_step)),
             include_coolant=bool(args.coolant),
-            machine_label=machine_label,
+            machine_label=None,
         )
 
         if args.output:
@@ -60,12 +56,15 @@ def main() -> None:
         return
 
     # Otherwise, run the GUI flow
+    from .gui_config import launch_gui_and_get_config
+    from tkinter import filedialog, messagebox, Tk
+
     cfg = launch_gui_and_get_config()
     if cfg is None:
         return
 
     program_name = str(getattr(cfg, "program_name", defaults.get("program_name", "WARMUP")))
-    rpm_steps = int(getattr(cfg, "rpm_steps", int(defaults.get("rpm_steps", defaults.get("num_steps", 5)))))
+    rpm_steps = int(getattr(cfg, "rpm_steps", int(defaults.get("rpm_steps", 5))))
     seconds_per_step = int(getattr(cfg, "seconds_per_step", int(defaults.get("seconds_per_step", 1))))
 
     controller_label = str(getattr(cfg, "controller", "Heidenhain TNC 640"))
@@ -109,7 +108,6 @@ def main() -> None:
         messagebox.showinfo("Saved", f"Program saved to: {path}")
     else:
         try:
-            from tkinter import Tk
             root = Tk()
             root.withdraw()
             messagebox.showinfo("Program", program_text[:1000] + ("..." if len(program_text) > 1000 else ""))

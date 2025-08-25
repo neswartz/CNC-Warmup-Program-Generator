@@ -9,8 +9,8 @@ Supports:
 
 Use it two ways:
 
-- GUI: Quick interactive form 
-- CLI: Scriptable generation with explicit parameters
+- GUI: interactive form
+- CLI: scriptable with flags
 
 ## Requirements
 
@@ -24,15 +24,20 @@ Use it two ways:
 
 ```bash
 python -m cnc_warmup
-# or
-python main.py
+```
+
+### Windows shortcuts
+
+- Double-click `run_gui.bat` to open the GUI.
+- Use `run_cli.bat` from a terminal for CLI usage, for example:
+
+```bat
+run_cli.bat --controller tnc640 --program-name WARMUP --x-travel 762 --y-travel 508 --z-travel 500 --start-rpm 500 --finish-rpm 6000 --start-feed 1000 --finish-feed 2000 --rpm-steps 5 --seconds-per-step 60 --coolant --output warmup.h
 ```
 
 1. In the GUI:
-   - Set Program Name and Controller (Heidenhain or Fanuc).
-   - Optionally choose a Machine from the Travel Limit Presets (from `config/warmup_config.json`) or pick "Custom" and input X/Y/Z travel.
-   - Set Start/Finish RPM and Feed, number of RPM Steps, and Seconds per Step.
-   - Toggle Flood Coolant if desired.
+   - Set Program Name, Controller, optional Machine preset or "Custom" travels
+   - Start/Finish RPM and Feed, RPM Steps, Seconds per Step, Coolant
 2. Click OK and choose where to save:
    - Heidenhain: `.h`
    - Fanuc: `.nc`
@@ -60,7 +65,7 @@ python -m cnc_warmup --controller fanuc31i --x-travel 1016 --y-travel 660 --z-tr
 
 Notes:
 
-- If any CLI argument is provided, the program runs in CLI mode; otherwise, it opens the GUI.
+- Any CLI argument triggers CLI mode; otherwise, the GUI opens.
 - Without `--output`, the program is printed to stdout.
 
 ## Configuration
@@ -82,7 +87,7 @@ Defaults and machine presets live in `config/warmup_config.json`:
     "start_feed": 1000,
     "finish_feed": 2000,
     "coolant": false,
-    "num_steps": 5,
+    "rpm_steps": 5,
     "seconds_per_step": 60
   }
 }
