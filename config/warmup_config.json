@@ -1,0 +1,20 @@
+{
+  "machines": {
+    "Machine 1": { "x_travel": 762, "y_travel": 508, "z_travel": 500 },
+    "Machine 2": { "x_travel": 1016, "y_travel": 660, "z_travel": 500 },
+    "Machine 3": { "x_travel": 1270, "y_travel": 508, "z_travel": 500 }
+  },
+  "defaults": {
+    "program_name": "WARMUP",
+    "controller": "tnc640",
+    "start_rpm": 500,
+    "finish_rpm": 6000,
+    "start_feed": 1000,
+    "finish_feed": 2000,
+    "coolant": false,
+    "num_steps": 5,
+    "seconds_per_step": 60
+  }
+}
+
+
