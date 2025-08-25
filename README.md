@@ -1,6 +1,6 @@
 # CNC Warmup Program Generator
 
-Generate safe, parameterized warmup programs for CNC machines.
+Generate warmup programs for CNC machines.
 
 Supports:
 
