@@ -18,17 +18,18 @@ Use it two ways:
 
 ## Quick Start (GUI)
 
-1. Install Python 3.10+.
-2. Open a terminal in the project folder.
-3. Run the app with no arguments to launch the GUI:
+### Windows shortcuts
+
+- Double-click `run_gui.bat` to open the GUI.
+
+### Terminal command
+
+1. Open a terminal in the project folder.
+2. Run the app with no arguments to launch the GUI:
 
 ```bash
 python -m cnc_warmup
 ```
-
-### Windows shortcuts
-
-- Double-click `run_gui.bat` to open the GUI.
 
 1. In the GUI:
    - Set Program Name, Controller, optional Machine preset or "Custom" travels
