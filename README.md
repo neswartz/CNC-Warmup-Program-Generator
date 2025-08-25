@@ -18,7 +18,7 @@ Use it two ways:
 
 ## Quick Start (GUI)
 
-### Windows shortcuts
+### Windows shortcut
 
 - Double-click `run_gui.bat` to open the GUI.
 
