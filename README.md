@@ -34,9 +34,7 @@ python -m cnc_warmup
 1. In the GUI:
    - Set Program Name, Controller, optional Machine preset or "Custom" travels
    - Start/Finish RPM and Feed, RPM Steps, Seconds per Step, Coolant
-2. Click OK and choose where to save:
-   - Heidenhain: `.h`
-   - Fanuc: `.nc`
+2. Click OK and choose where to save.
 
 ## Command-Line Usage (CLI)
 
